@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+.header-text {
+  flex: 1 1 auto;
+}
+.notes {
+  margin-top: 1.5rem;
+  padding: 0.5rem 0 1rem;
+  border-top: 1px solid #ddd;
+}
+.note {
+  border: 1px solid #ddd;
+  border-radius: 0.25rem;
+  margin: 1rem 0;
+  padding: 1rem;
+}
