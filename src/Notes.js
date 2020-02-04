@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Loading from "./Loading";
 import "./Notes.css";
 
 export default class Notes extends Component {
@@ -16,24 +17,23 @@ export default class Notes extends Component {
     event.preventDefault();
     const { note } = this.state;
     if (note.length > 0) {
-      this.setState(
-        state => ({
+      this.setState(state => {
+        const notes = [...state.notes, note];
+        window.localStorage.setItem(
+          `${this.props.username}_notes`,
+          JSON.stringify(notes)
+        );
+        return {
           note: "",
-          notes: [...state.notes, note]
-        }),
-        () => {
-          console.log(this.state.notes);
-          window.localStorage.setItem(
-            `${this.props.username}_notes`,
-            JSON.stringify(this.state.notes)
-          );
-        }
-      );
+          notes
+        };
+      });
     }
   };
   render() {
     const { username, signOut } = this.props;
-    const { note, notes } = this.state;
+    const { loading, note, notes } = this.state;
+    if (loading) return <Loading />;
     return (
       <section>
         <header className="header">
